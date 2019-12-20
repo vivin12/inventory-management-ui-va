@@ -9,12 +9,12 @@ import {
   Icon
 } from "carbon-components-react";
 import { iconCheckmarkSolid } from "carbon-icons";
-import Header from "./Header";
-import "./patterns.scss";
+import Header from "../pattern-components/Header";
+import "../pattern-components/patterns.scss";
 
 class StockItemList extends Component {
   title = 'Stock Items';
-  subtitle = 'This is the current inventory of items';
+  subtitle = 'This is the current inventory of items.';
 
   columns = [
     "name",
@@ -24,8 +24,8 @@ class StockItemList extends Component {
     "picture",
     "manufacturer",
   ];
-  formatters = {}
-  };
+
+  formatters = {};
 
   data = [
     {
@@ -65,8 +65,8 @@ class StockItemList extends Component {
   async componentDidMount() {
 
     this.setState({
-      data: this.data,
-    })
+      data: await this.props.stockService.listStockItems()
+    });
   }
 
   onRowClick = id => {
@@ -144,4 +144,4 @@ class StockItemList extends Component {
   }
 }
 
-export default TableList;
+export default StockItemList;
